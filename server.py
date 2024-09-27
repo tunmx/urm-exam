@@ -10,6 +10,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse
 
+STATIC_DIR = "urm-visualization/build_latest"
+# STATIC_DIR = "urm-visualization/build"
+
 app = FastAPI()
 
 app.add_middleware(
@@ -19,7 +22,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-app.mount("/static", StaticFiles(directory="urm-visualization/build/static"), name="static")
+app.mount("/static", StaticFiles(directory=f"{STATIC_DIR}/static"), name="static")
 
 @app.get("/")
 def read_root():
@@ -60,7 +63,7 @@ async def run_urm_program(request: Request):
 
 @app.get("/index")
 async def serve_react_app(request: Request):
-    return HTMLResponse(content=open("urm-visualization/build/index.html", "r").read())
+    return HTMLResponse(content=open(f"{STATIC_DIR}/index.html", "r").read())
 
 if __name__ == "__main__":
     uvicorn.run("server:app", host="0.0.0.0", port=8975, reload=True)
