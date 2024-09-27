@@ -66,4 +66,5 @@ async def serve_react_app(request: Request):
     return HTMLResponse(content=open(f"{STATIC_DIR}/index.html", "r").read())
 
 if __name__ == "__main__":
+    print(f"Visit page at http://localhost:8975/index")
     uvicorn.run("server:app", host="0.0.0.0", port=8975, reload=True)
