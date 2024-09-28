@@ -9,6 +9,7 @@ from fastapi import Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse
+from load_programs import load_programs
 
 STATIC_DIR = "urm-visualization/build_latest"
 # STATIC_DIR = "urm-visualization/build"
@@ -65,5 +66,11 @@ async def run_urm_program(request: Request):
 async def serve_react_app(request: Request):
     return HTMLResponse(content=open(f"{STATIC_DIR}/index.html", "r").read())
 
+
+@app.get("/get_programs")
+async def get_programs():
+    return {"programs": load_programs("./programs")}
+
 if __name__ == "__main__":
+    print("Server is starting...")
     uvicorn.run("server:app", host="0.0.0.0", port=8975, reload=True)
