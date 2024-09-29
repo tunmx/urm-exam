@@ -1,8 +1,6 @@
 from fastapi import FastAPI
-from fastapi.responses import Response
 import uvicorn
 import urm_simulation as urm
-from urm_simulation import C, J, Z, S
 from urm_dec import build_urm_program_from_data, serialize_urm_program
 import json
 from fastapi import Request
