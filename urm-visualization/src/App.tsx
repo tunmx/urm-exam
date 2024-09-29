@@ -411,7 +411,7 @@ const URMSequenceVisualization: React.FC<URMSequenceVisualizationProps> = ({
         else if (index === args[1]) color = 'bg-blue-200 border-blue-400';
         break;
       case 'J':
-        if (index === args[0] || index === args[1] || index === args[2]) {
+        if (index === args[0] || index === args[1]) {
           color = 'bg-purple-200 border-purple-400';
         }
         break;
@@ -466,15 +466,7 @@ const URMSequenceVisualization: React.FC<URMSequenceVisualizationProps> = ({
 
   return (
     <div className="p-4 pb-32 relative min-h-screen">
-      <div className="flex justify-between items-center mb-4">
-        <h2 className="text-2xl font-bold">URM Instruction Sequence Visualization</h2>
-        <button
-          className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded transition duration-200 ease-in-out"
-          onClick={onBackToCreator}
-        >
-          Back to Creator
-        </button>
-      </div>
+      <h2 className="text-2xl font-bold mb-4">URM Instruction Sequence Visualization</h2>
 
       <div className="mb-6">
         <h3 className="text-xl font-bold mb-2">Initialize Registers</h3>
@@ -521,6 +513,12 @@ const URMSequenceVisualization: React.FC<URMSequenceVisualizationProps> = ({
             className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded transition duration-200 ease-in-out disabled:bg-gray-400"
           >
             {isLoading ? 'Loading...' : 'Run Simulator'}
+          </button>
+          <button
+            className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded transition duration-200 ease-in-out"
+            onClick={onBackToCreator}
+          >
+            Back to Creator
           </button>
         </div>
       </div>
